@@ -29,6 +29,7 @@
     </prerequisites>
 
     <properties>
+        <basin.revision></basin.revision>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.version>2.2.1</maven.version>
     </properties>
@@ -135,6 +136,30 @@
     <build>
         <finalName>Basin</finalName>
         <defaultGoal>clean install</defaultGoal>
+
+        <resources>
+            <!-- Logging -->
+            <resource>
+                <directory>${project.basedir}/src/main/resources</directory>
+                <targetPath>.</targetPath>
+                <filtering>false</filtering>
+
+                <includes>
+                    <include>log4j2.xml</include>
+                </includes>
+            </resource>
+
+            <!-- Flange Configuration -->
+            <resource>
+                <directory>${project.basedir}/src/main/resources</directory>
+                <targetPath>.</targetPath>
+                <filtering>true</filtering>
+
+                <includes>
+                    <include>flange.properties</include>
+                </includes>
+            </resource>
+        </resources>
 
         <plugins>
             <!-- Java Compiler -->
