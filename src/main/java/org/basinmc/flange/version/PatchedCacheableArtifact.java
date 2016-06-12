@@ -43,11 +43,11 @@ public class PatchedCacheableArtifact implements CacheableArtifact {
     public static final byte[] MAGIC_NUMBER = new byte[]{(byte) 0xDE, (byte) 0xFE, (byte) 0xC8, (byte) 0xED};
 
     private final String name;
-    private final RemoteCacheableArtifact diff;
+    private final CacheableArtifact diff;
     private final VersionCache cache;
     private final Path cachePath;
 
-    public PatchedCacheableArtifact(@Nonnull String name, @Nonnull RemoteCacheableArtifact diff, @Nonnull VersionCache cache, @Nonnull Path cachePath) {
+    public PatchedCacheableArtifact(@Nonnull String name, @Nonnull CacheableArtifact diff, @Nonnull VersionCache cache, @Nonnull Path cachePath) {
         this.name = name;
         this.diff = diff;
         this.cache = cache;
