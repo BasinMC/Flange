@@ -29,7 +29,9 @@
     </prerequisites>
 
     <properties>
-        <basin.revision></basin.revision>
+        <basin.revision />
+        <basin.channel>prerelease</basin.channel>
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.version>2.2.1</maven.version>
     </properties>
