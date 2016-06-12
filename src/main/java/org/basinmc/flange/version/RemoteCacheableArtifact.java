@@ -60,7 +60,7 @@ public class RemoteCacheableArtifact implements CacheableArtifact {
     @Override
     public Path getCachePath() throws IllegalStateException {
         if (!this.isCached()) {
-            throw new IllegalStateException("Game version is not available from cache: " + this.name);
+            throw new IllegalStateException("Game version is not available from cache: " + this.toString());
         }
 
         return this.cacheFilePath;
