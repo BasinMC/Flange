@@ -48,5 +48,5 @@ public interface ArtifactRepository {
      * @throws IOException when the repository is unavailable.
      */
     @Nonnull
-    Set<Artifact> getArtifactList() throws IOException;
+    Set<ArtifactMetadata> getArtifactList() throws IOException;
 }
