@@ -16,6 +16,7 @@
  */
 package org.basinmc.flange.artifact;
 
+import java.io.IOException;
 import java.util.Optional;
 import java.util.Set;
 
@@ -33,15 +34,19 @@ public interface ArtifactRepository {
      *
      * @param name an artifact name.
      * @return an artifact or, if no such artifact could be found, an empty optional.
+     *
+     * @throws IOException when the repository is unavailable.
      */
     @Nonnull
-    Optional<Artifact> findArtifact(@Nonnull String name);
+    Optional<Artifact> findArtifact(@Nonnull String name) throws IOException;
 
     /**
      * Retrieves a full list of artifacts.
      *
      * @return a list of artifacts.
+     *
+     * @throws IOException when the repository is unavailable.
      */
     @Nonnull
-    Set<Artifact> getArtifactList();
+    Set<Artifact> getArtifactList() throws IOException;
 }
