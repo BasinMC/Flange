@@ -43,10 +43,11 @@ public interface ArtifactRepository {
     /**
      * Retrieves a full list of artifacts.
      *
+     * @param channel a channel to poll from.
      * @return a list of artifacts.
      *
      * @throws IOException when the repository is unavailable.
      */
     @Nonnull
-    Set<ArtifactMetadata> getArtifactList() throws IOException;
+    Set<ArtifactMetadata> getArtifactList(@Nonnull Channel channel) throws IOException;
 }
