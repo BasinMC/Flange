@@ -41,6 +41,18 @@ public interface ArtifactRepository {
     Optional<Artifact> findArtifact(@Nonnull String name) throws IOException;
 
     /**
+     * Finds the latest artifact within the repository.
+     *
+     * @param channel a channel to poll from.
+     * @return the latest known artifact or, if no artifact was found in the channel, an empty
+     * optional.
+     *
+     * @throws IOException when the repository is unavailable.
+     */
+    @Nonnull
+    Optional<Artifact> findLatest(@Nonnull Channel channel) throws IOException;
+
+    /**
      * Retrieves a full list of artifacts.
      *
      * @param channel a channel to poll from.
