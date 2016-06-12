@@ -37,14 +37,11 @@ import javax.annotation.concurrent.ThreadSafe;
  */
 @Immutable
 @ThreadSafe
-public class RemoteArtifact implements Artifact {
-    private final String name;
-    private final boolean stable;
+public class RemoteArtifact extends SimpleArtifactMetadata implements Artifact {
     private final URL url;
 
     public RemoteArtifact(@Nonnull String name, boolean stable, @Nonnull URL url) {
-        this.name = name;
-        this.stable = stable;
+        super(name, stable);
         this.url = url;
     }
 
@@ -66,22 +63,5 @@ public class RemoteArtifact implements Artifact {
                 }
             }
         }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Nonnull
-    @Override
-    public String getName() {
-        return this.name;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean isStable() {
-        return this.stable;
     }
 }
