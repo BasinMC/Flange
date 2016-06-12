@@ -17,9 +17,10 @@
 package org.basinmc.flange.artifact.repository;
 
 import java.io.IOException;
-import java.nio.file.Path;
+import java.nio.channels.ReadableByteChannel;
 
 import javax.annotation.Nonnull;
+import javax.annotation.WillNotClose;
 
 /**
  * Represents a single downloadable artifact.
@@ -29,10 +30,13 @@ import javax.annotation.Nonnull;
 public interface Artifact extends ArtifactMetadata {
 
     /**
-     * Downloads the artifact to a local path.
+     * Opens a new channel which makes the artifact data available to the application.
      *
-     * @param path a path.
-     * @throws IOException when downloading fails.
+     * @return a channel containing the artifact data.
+     *
+     * @throws IOException when accessing the artifact fails.
      */
-    void download(@Nonnull Path path) throws IOException;
+    @Nonnull
+    @WillNotClose
+    ReadableByteChannel openChannel() throws IOException;
 }
