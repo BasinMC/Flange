@@ -39,7 +39,7 @@ import io.sigpipe.jbsdiff.Patch;
  *
  * @author <a href="mailto:johannesd@torchmind.com">Johannes Donath</a>
  */
-public class PatchedCacheableArtifact implements CacheableArtifact {
+class PatchedCacheableArtifact implements CacheableArtifact {
     public static final byte[] MAGIC_NUMBER = new byte[]{(byte) 0xDE, (byte) 0xFE, (byte) 0xC8, (byte) 0xED};
 
     private final String name;

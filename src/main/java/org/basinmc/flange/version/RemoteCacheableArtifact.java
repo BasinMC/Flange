@@ -34,7 +34,7 @@ import javax.annotation.Nonnull;
  *
  * @author <a href="mailto:johannesd@torchmind.com">Johannes Donath</a>
  */
-public class RemoteCacheableArtifact implements CacheableArtifact {
+class RemoteCacheableArtifact implements CacheableArtifact {
     private final String name;
     private final Path cacheFilePath;
     private final URL remoteLocation;
