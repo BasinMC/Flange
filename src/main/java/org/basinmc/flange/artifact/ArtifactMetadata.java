@@ -16,23 +16,25 @@
  */
 package org.basinmc.flange.artifact;
 
-import java.io.IOException;
-import java.nio.file.Path;
-
 import javax.annotation.Nonnull;
 
 /**
- * Represents a single downloadable artifact.
- *
  * @author <a href="mailto:johannesd@torchmind.com">Johannes Donath</a>
  */
-public interface Artifact extends ArtifactMetadata {
+public interface ArtifactMetadata {
 
     /**
-     * Downloads the artifact to a local path.
+     * Retrieves a human readable name for the artifact.
      *
-     * @param path a path.
-     * @throws IOException when downloading fails.
+     * @return a name.
      */
-    void download(@Nonnull Path path) throws IOException;
+    @Nonnull
+    String getName();
+
+    /**
+     * Checks whether the artifact is considered stable.
+     *
+     * @return true if stable.
+     */
+    boolean isStable();
 }
