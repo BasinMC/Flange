@@ -30,17 +30,17 @@ import java.nio.file.StandardOpenOption;
 import javax.annotation.Nonnull;
 
 /**
- * Represents a cached or downloadable game version.
+ * Represents a cached or remotely available artifact.
  *
  * @author <a href="mailto:johannesd@torchmind.com">Johannes Donath</a>
  */
-public class GameVersion implements CacheableArtifact {
-    private final String versionName;
+public class RemoteCacheableArtifact implements CacheableArtifact {
+    private final String name;
     private final Path cacheFilePath;
     private final URL remoteLocation;
 
-    public GameVersion(@Nonnull String versionName, @Nonnull Path cacheFilePath, @Nonnull URL remoteLocation) {
-        this.versionName = versionName;
+    public RemoteCacheableArtifact(@Nonnull String name, @Nonnull Path cacheFilePath, @Nonnull URL remoteLocation) {
+        this.name = name;
         this.cacheFilePath = cacheFilePath;
         this.remoteLocation = remoteLocation;
     }
@@ -60,7 +60,7 @@ public class GameVersion implements CacheableArtifact {
     @Override
     public Path getCachePath() throws IllegalStateException {
         if (!this.isCached()) {
-            throw new IllegalStateException("Game version is not available from cache: " + this.versionName);
+            throw new IllegalStateException("Game version is not available from cache: " + this.name);
         }
 
         return this.cacheFilePath;
@@ -73,7 +73,7 @@ public class GameVersion implements CacheableArtifact {
      */
     @Nonnull
     public String getName() {
-        return this.versionName;
+        return this.name;
     }
 
     /**
@@ -88,7 +88,7 @@ public class GameVersion implements CacheableArtifact {
         HttpURLConnection connection = (HttpURLConnection) this.remoteLocation.openConnection();
 
         if (connection.getResponseCode() != 200) {
-            throw new IOException("Could not retrieve game version " + this.versionName + ": Expected response code 200 but got " + connection.getResponseCode());
+            throw new IOException("Could not retrieve game version " + this.name + ": Expected response code 200 but got " + connection.getResponseCode());
         }
 
         try (InputStream inputStream = connection.getInputStream()) {
@@ -105,6 +105,6 @@ public class GameVersion implements CacheableArtifact {
      */
     @Override
     public String toString() {
-        return String.format("GameVersion{name=\"%s\",cachePath=\"%s\",cached=%s}", this.versionName, this.cacheFilePath.toAbsolutePath(), this.isCached());
+        return String.format("RemoteCacheableArtifact{name=\"%s\",cachePath=\"%s\",cached=%s}", this.name, this.cacheFilePath.toAbsolutePath(), this.isCached());
     }
 }
