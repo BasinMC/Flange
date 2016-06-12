@@ -22,12 +22,23 @@ import javax.annotation.Nonnull;
  * @author <a href="mailto:johannesd@torchmind.com">Johannes Donath</a>
  */
 public class SimpleArtifactMetadata implements ArtifactMetadata {
+    private final String identifier;
     private final String name;
     private final boolean stable;
 
-    public SimpleArtifactMetadata(@Nonnull String name, boolean stable) {
+    public SimpleArtifactMetadata(@Nonnull String identifier, @Nonnull String name, boolean stable) {
+        this.identifier = identifier;
         this.name = name;
         this.stable = stable;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Nonnull
+    @Override
+    public String getIdentifier() {
+        return this.identifier;
     }
 
     /**

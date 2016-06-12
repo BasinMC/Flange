@@ -24,6 +24,13 @@ import javax.annotation.Nonnull;
 public interface ArtifactMetadata {
 
     /**
+     * Retrieves a machine understandable name (such as a version number).
+     * @return an identifier.
+     */
+    @Nonnull
+    String getIdentifier();
+
+    /**
      * Retrieves a human readable name for the artifact.
      *
      * @return a name.

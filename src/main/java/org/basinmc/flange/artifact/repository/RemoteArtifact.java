@@ -40,8 +40,8 @@ import javax.annotation.concurrent.ThreadSafe;
 public class RemoteArtifact extends SimpleArtifactMetadata implements Artifact {
     private final URL url;
 
-    public RemoteArtifact(@Nonnull String name, boolean stable, @Nonnull URL url) {
-        super(name, stable);
+    public RemoteArtifact(@Nonnull String identifier, @Nonnull String name, boolean stable, @Nonnull URL url) {
+        super(identifier, name, stable);
         this.url = url;
     }
 
