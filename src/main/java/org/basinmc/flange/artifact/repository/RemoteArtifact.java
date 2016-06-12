@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.basinmc.flange.artifact;
+package org.basinmc.flange.artifact.repository;
 
 import java.io.IOException;
 import java.io.InputStream;

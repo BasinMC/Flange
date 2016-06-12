@@ -14,25 +14,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.basinmc.flange.artifact;
+package org.basinmc.flange.artifact.repository;
+
+import javax.annotation.Nonnull;
 
 /**
- * Provides a list of valid release channels.
- *
  * @author <a href="mailto:johannesd@torchmind.com">Johannes Donath</a>
  */
-public enum Channel {
+public interface ArtifactMetadata {
 
     /**
-     * Provides testing versions which may contain errors or break compatibility with previous
-     * versions.
+     * Retrieves a human readable name for the artifact.
      *
-     * Use with extreme caution!
+     * @return a name.
      */
-    PRERELEASE,
+    @Nonnull
+    String getName();
 
     /**
-     * Provides stable versions which are generally considered to be functional.
+     * Checks whether the artifact is considered stable.
+     *
+     * @return true if stable.
      */
-    STABLE
+    boolean isStable();
 }

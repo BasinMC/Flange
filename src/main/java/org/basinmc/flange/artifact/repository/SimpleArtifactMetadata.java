@@ -14,27 +14,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.basinmc.flange.artifact;
+package org.basinmc.flange.artifact.repository;
 
 import javax.annotation.Nonnull;
 
 /**
  * @author <a href="mailto:johannesd@torchmind.com">Johannes Donath</a>
  */
-public interface ArtifactMetadata {
+public class SimpleArtifactMetadata implements ArtifactMetadata {
+    private final String name;
+    private final boolean stable;
+
+    public SimpleArtifactMetadata(@Nonnull String name, boolean stable) {
+        this.name = name;
+        this.stable = stable;
+    }
 
     /**
-     * Retrieves a human readable name for the artifact.
-     *
-     * @return a name.
+     * {@inheritDoc}
      */
     @Nonnull
-    String getName();
+    @Override
+    public String getName() {
+        return this.name;
+    }
 
     /**
-     * Checks whether the artifact is considered stable.
-     *
-     * @return true if stable.
+     * {@inheritDoc}
      */
-    boolean isStable();
+    @Override
+    public boolean isStable() {
+        return this.stable;
+    }
 }

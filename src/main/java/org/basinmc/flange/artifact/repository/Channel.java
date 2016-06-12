@@ -14,36 +14,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.basinmc.flange.artifact;
-
-import javax.annotation.Nonnull;
+package org.basinmc.flange.artifact.repository;
 
 /**
+ * Provides a list of valid release channels.
+ *
  * @author <a href="mailto:johannesd@torchmind.com">Johannes Donath</a>
  */
-public class SimpleArtifactMetadata implements ArtifactMetadata {
-    private final String name;
-    private final boolean stable;
-
-    public SimpleArtifactMetadata(@Nonnull String name, boolean stable) {
-        this.name = name;
-        this.stable = stable;
-    }
+public enum Channel {
 
     /**
-     * {@inheritDoc}
+     * Provides testing versions which may contain errors or break compatibility with previous
+     * versions.
+     *
+     * Use with extreme caution!
      */
-    @Nonnull
-    @Override
-    public String getName() {
-        return this.name;
-    }
+    PRERELEASE,
 
     /**
-     * {@inheritDoc}
+     * Provides stable versions which are generally considered to be functional.
      */
-    @Override
-    public boolean isStable() {
-        return this.stable;
-    }
+    STABLE
 }
