@@ -17,16 +17,13 @@
 package org.basinmc.flange.artifact.repository;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.channels.Channels;
-import java.nio.channels.FileChannel;
 import java.nio.channels.ReadableByteChannel;
-import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
 
 import javax.annotation.Nonnull;
+import javax.annotation.WillNotClose;
 import javax.annotation.concurrent.Immutable;
 import javax.annotation.concurrent.ThreadSafe;
 
@@ -48,20 +45,16 @@ public class RemoteArtifact extends SimpleArtifactMetadata implements Artifact {
     /**
      * {@inheritDoc}
      */
+    @Nonnull
     @Override
-    public void download(@Nonnull Path path) throws IOException {
+    @WillNotClose
+    public ReadableByteChannel openChannel() throws IOException {
         HttpURLConnection connection = (HttpURLConnection) this.url.openConnection();
 
         if (connection.getResponseCode() != 200) {
             throw new IllegalStateException("Could not retrieve artifact: Expected status 200 but received " + connection.getResponseCode());
         }
 
-        try (InputStream inputStream = connection.getInputStream()) {
-            try (ReadableByteChannel inputChannel = Channels.newChannel(inputStream)) {
-                try (FileChannel outputChannel = FileChannel.open(path, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.WRITE)) {
-                    outputChannel.transferFrom(inputChannel, 0, Long.MAX_VALUE);
-                }
-            }
-        }
+        return Channels.newChannel(connection.getInputStream());
     }
 }
